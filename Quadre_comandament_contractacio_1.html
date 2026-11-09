@@ -1,0 +1,314 @@
+<!doctype html><html lang="ca"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Quadre de comandament de la contractació</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap">
+<style>
+/* Layout: capçalera blanca amb pestanyes subratllades en vermell, banda grisa d'entrada, targetes blanques arrodonides */
+:root{
+  --ink:#333333; --strong:#1D1D1B; --red:#B81A0F; --paper:#FFFFFF; --band:#F2F2F2; --card:#FFFFFF; --line:#DCDCDC; --muted:#6E6E6E; --soft:#EDEDED;
+  --ok:#2E7D4F; --warn:#C98A00; --bad:#B81A0F;
+  --okbg:#E5F2EA; --warnbg:#FBF0D4; --badbg:#F8E1DF;
+  --f-display:"Open Sans",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ink:#E6E6E6; --strong:#FFFFFF; --red:#F0574B; --paper:#161616; --band:#202020; --card:#1C1C1C; --line:#353535; --muted:#A5A5A5; --soft:#2B2B2B;
+  --ok:#4CC383; --warn:#F2B630; --bad:#F0574B; --okbg:#173022; --warnbg:#33290F; --badbg:#3A1714; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --ink:#E6E6E6; --strong:#FFFFFF; --red:#F0574B; --paper:#161616; --band:#202020; --card:#1C1C1C; --line:#353535; --muted:#A5A5A5; --soft:#2B2B2B;
+  --ok:#4CC383; --warn:#F2B630; --bad:#F0574B; --okbg:#173022; --warnbg:#33290F; --badbg:#3A1714; color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-display);font-size:14px;line-height:1.5}
+.wrap{max-width:1240px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.util{background:var(--band);font-size:12.5px}
+.util .wrap{padding-block:6px;display:flex;justify-content:flex-end;gap:18px;color:var(--muted)}
+header{background:var(--paper);border-bottom:1px solid var(--line)}
+header .wrap{padding-block:18px 0;display:flex;flex-direction:column;gap:14px}
+.brand{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.brand .mark{font-weight:700;font-size:13px;color:var(--strong);line-height:1.1}
+.brand .sep{width:1px;height:28px;background:var(--line)}
+.brand .site{font-size:19px;color:var(--ink)}
+nav{display:flex;gap:4px;overflow-x:auto}
+nav a{color:var(--ink);text-decoration:none;padding:10px 18px 14px;font-weight:600;font-size:15px;border-bottom:3px solid transparent;white-space:nowrap}
+nav a small{display:block;font-weight:400;font-size:12px;color:var(--muted)}
+nav a[aria-current="page"]{border-bottom-color:var(--red)}
+nav a:hover{color:var(--red)}
+nav a:focus-visible{outline:2px solid var(--red);outline-offset:-2px}
+.hero{background:var(--band)}
+.hero .wrap{padding-block:30px 26px;display:flex;flex-direction:column;gap:10px}
+.eyebrow{color:var(--red);font-size:clamp(17px,2vw,22px);font-weight:600}
+h1{margin:0;font-size:clamp(26px,3.4vw,38px);font-weight:600;color:var(--strong);line-height:1.2;text-wrap:balance}
+.lead{max-width:70ch;color:var(--ink);margin:0}
+.filters{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:8px}
+.chip{background:var(--card);border:1px solid #9E9E9E;border-radius:6px;padding:7px 12px;font-size:13px}
+.chip b{font-weight:700}
+.btn{background:var(--red);color:#fff;border-radius:6px;padding:8px 16px;font-weight:600;font-size:13px}
+.legend{margin-left:auto;display:flex;gap:14px;font-size:12.5px;color:var(--muted);flex-wrap:wrap}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px;vertical-align:0}
+.s-ok{--s:var(--ok);--sb:var(--okbg)} .s-warn{--s:var(--warn);--sb:var(--warnbg)} .s-bad{--s:var(--bad);--sb:var(--badbg)}
+.dot{background:var(--s)}
+main .wrap{padding-block:26px 36px;display:flex;flex-direction:column;gap:20px}
+h2{font-size:17px;font-weight:600;margin:0;color:var(--strong)}
+.sec-h{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+.sec-h > span{font-size:12.5px;color:var(--muted)}
+.slash{display:flex;align-items:center;gap:12px}
+.slash::before{content:"";width:34px;height:10px;flex:none;background:repeating-linear-gradient(-60deg,var(--red) 0 3px,transparent 3px 8px)}
+.kpa{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.obj{background:var(--card);border:1px solid var(--line);border-radius:8px;display:flex;flex-direction:column;min-width:0;overflow:hidden}
+.obj-h{padding:14px 14px 12px;border-bottom:1px solid var(--line);background:var(--band);min-height:84px;position:relative}
+.obj-h::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:3px;background:var(--s)}
+.obj-h .code{font-weight:700;font-size:13px;display:flex;justify-content:space-between;color:var(--strong)}
+.obj-h .code em{font-style:normal;font-weight:600;font-size:12px;color:var(--s)}
+.obj-h .name{font-weight:600;font-size:14px;line-height:1.3;margin-top:4px;color:var(--strong);text-wrap:balance}
+.kpi{padding:11px 14px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:1fr auto;gap:2px 8px;align-items:baseline}
+.kpi:last-child{border-bottom:0}
+.kpi .n{font-size:12.5px;color:var(--muted);grid-column:1/-1}
+.kpi .v{font-size:22px;font-weight:700;color:var(--strong);font-variant-numeric:tabular-nums}
+.kpi .t{font-size:11.5px;color:var(--muted);text-align:right;white-space:nowrap}
+.kpi .v .dot{width:8px;height:8px;margin-right:6px;vertical-align:3px}
+.kri{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.kri div{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--s);border-radius:8px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.kri .l{font-size:13.5px;color:var(--strong)} .kri .l small{display:block;color:var(--muted);font-size:12px}
+.kri .v{font-size:22px;font-weight:700;color:var(--strong);font-variant-numeric:tabular-nums}
+.grid2{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:12px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:16px 18px;min-width:0;display:flex;flex-direction:column;gap:12px}
+svg text{fill:var(--muted);font-family:var(--f-display);font-size:12px}
+.bar-row{display:grid;grid-template-columns:1fr auto;gap:4px 10px;font-size:13px}
+.bar{grid-column:1/-1;height:10px;background:var(--soft);border-radius:5px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--strong);border-radius:5px}
+.bar.r i{background:var(--red)}
+.num{font-variant-numeric:tabular-nums;font-weight:700;color:var(--strong)}
+.note{font-size:12px;color:var(--muted)}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th{text-align:left;font-weight:600;font-size:12.5px;color:var(--strong);padding:9px 10px;border-bottom:2px solid var(--red);white-space:nowrap;background:var(--band)}
+td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+td.r,th.r{text-align:right;font-variant-numeric:tabular-nums}
+.tw{overflow-x:auto}
+.pill{display:inline-flex;align-items:center;gap:6px;background:var(--sb);color:var(--strong);border-radius:20px;padding:2px 10px;font-size:12px;white-space:nowrap}
+.pill::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--s)}
+.prio{font-weight:700;border:1px solid var(--line);padding:1px 8px;border-radius:6px}
+.cycle{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.cycle div{background:var(--band);border-radius:8px;padding:12px;display:flex;flex-direction:column;gap:2px}
+.cycle b{font-size:24px;color:var(--strong);font-variant-numeric:tabular-nums}
+.cycle span{font-size:12.5px;color:var(--muted);line-height:1.3}
+.cycle div.hl{background:var(--badbg)}
+select{font:inherit;background:var(--card);color:var(--ink);border:1px solid #9E9E9E;border-radius:6px;padding:6px 10px}
+footer{background:var(--band)}
+footer .wrap{padding-block:18px 26px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:12.5px;color:var(--muted)}
+@media (max-width:1000px){.kpa{grid-template-columns:repeat(2,minmax(0,1fr))}.grid2,.grid3{grid-template-columns:1fr}.cycle{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.kpa,.kri{grid-template-columns:1fr}.legend{margin-left:0}}
+@media (prefers-reduced-motion:no-preference){.bar i{transition:width .4s ease}}
+</style></head><body>
+
+<div class="util"><div class="wrap"><span>Prototip elaborat per MBC · oferta COS.01.2026</span><span>CA</span></div></div>
+<header>
+  <div class="wrap">
+    <div class="brand"><span class="mark">Model estratègic<br>de contractació</span><span class="sep"></span><span class="site">Quadre de comandament de la contractació</span></div>
+    <nav aria-label="Vistes del quadre">
+      <a href="#estrategica" data-v="estrategica">Vista estratègica<small>Direcció · trimestral</small></a>
+      <a href="#gestio" data-v="gestio">Vista de gestió<small>Gerència i Contractació · mensual</small></a>
+      <a href="#operativa" data-v="operativa">Vista operativa<small>Àrees promotores · per expedient</small></a>
+    </nav>
+  </div>
+</header>
+<section class="hero"><div class="wrap">
+  <div class="eyebrow">Prototip il·lustratiu · dades fictícies</div>
+  <h1>Com funciona la contractació de l'Agència</h1>
+  <p class="lead">Indicadors del model organitzats pels cinc objectius, amb una vista per a cada nivell de decisió.</p>
+</div></section>
+
+<main>
+<div class="wrap">
+  <div class="filters">
+    <span class="chip">Període: <b id="per">T4 2027</b></span>
+    <span class="chip">Pla de contractació: <b>2027</b></span>
+    <span class="chip">Font: <b>registre únic d'expedients</b></span>
+    <span class="legend"><span class="s-ok"><i class="dot"></i>En objectiu</span><span class="s-warn"><i class="dot"></i>En vigilància</span><span class="s-bad"><i class="dot"></i>Fora d'objectiu</span></span>
+  </div>
+
+  <!-- ESTRATÈGICA -->
+  <section id="v-estrategica" data-view="estrategica" style="display:flex;flex-direction:column;gap:18px">
+    <div class="sec-h"><h2 class="slash">Els cinc objectius del model i els seus indicadors (KPA → KPI)</h2><span>Cada objectiu pren l'estat del seu indicador més desfavorable</span></div>
+    <div class="kpa" id="kpa"></div>
+    <div class="sec-h"><h2 class="slash">Indicadors de risc (KRI)</h2><span>Alerten abans que el risc es materialitzi</span></div>
+    <div class="kri" id="kri"></div>
+    <div class="grid2">
+      <div class="panel">
+        <div class="sec-h"><h2 class="slash">O1 · Evolució del compliment de la programació</h2><span>Objectiu ≥ 85 %</span></div>
+        <svg viewBox="0 0 560 220" role="img" aria-label="Compliment de la programació per trimestre: T1 72%, T2 78%, T3 83%, T4 85%" id="trend"></svg>
+      </div>
+      <div class="panel">
+        <div class="sec-h"><h2 class="slash">Pla 2027 per prioritat</h2><span>48 expedients · 3,5 M€</span></div>
+        <div id="prio" style="display:flex;flex-direction:column;gap:14px"></div>
+        <p class="note">Import base de licitació previst, IVA exclòs. Prioritat assignada amb la matriu de priorització del model.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GESTIÓ -->
+  <section id="v-gestio" data-view="gestio" style="display:flex;flex-direction:column;gap:18px" hidden>
+    <div class="panel">
+      <div class="sec-h"><h2 class="slash">Expedients per etapa del cicle de vida contractual</h2><span>Situació a 31/12/2027</span></div>
+      <div class="cycle">
+        <div><b>9</b><span>1 · Planificació de necessitats i programació</span></div>
+        <div><b>12</b><span>2 · Preparació de la contractació</span></div>
+        <div><b>10</b><span>3 · Tramitació i formalització</span></div>
+        <div><b>41</b><span>4 · Execució i seguiment (contractes vigents)</span></div>
+        <div class="hl"><b>7</b><span>5 · Gestió de la continuïtat (vencen en ≤ 12 mesos)</span></div>
+      </div>
+    </div>
+    <div class="grid2">
+      <div class="panel">
+        <div class="sec-h"><h2 class="slash">O3 · Venciments dels pròxims 12 mesos</h2><span>Alertes a 12, 9 i 6 mesos</span></div>
+        <div class="tw"><table>
+          <thead><tr><th>Contracte</th><th>Venciment</th><th>Successor</th></tr></thead>
+          <tbody id="venc"></tbody>
+        </table></div>
+      </div>
+      <div class="panel">
+        <div class="sec-h"><h2 class="slash">O3 · Termini mitjà de tramitació</h2><span>Dies de l'inici a la formalització</span></div>
+        <div id="term" style="display:flex;flex-direction:column;gap:14px"></div>
+        <p class="note">La marca vertical indica el termini objectiu de cada procediment.</p>
+      </div>
+    </div>
+    <div class="grid3">
+      <div class="panel">
+        <div class="sec-h"><h2 class="slash">O2 · Circuit de validació de necessitats</h2></div>
+        <div class="bar-row"><span>Fitxes registrades al trimestre</span><span class="num">23</span></div>
+        <div class="bar-row"><span>Validades en ≤ 15 dies</span><span class="num">16</span><div class="bar"><i style="width:70%"></i></div></div>
+        <div class="bar-row"><span>Pendents de decisió de prioritat</span><span class="num">4</span><div class="bar r"><i style="width:17%"></i></div></div>
+      </div>
+      <div class="panel">
+        <div class="sec-h"><h2 class="slash">O4 · Acords dels fòrums</h2></div>
+        <div class="bar-row"><span>Comitè de Planificació Contractual</span><span class="num">10 / 11</span><div class="bar"><i style="width:91%"></i></div></div>
+        <div class="bar-row"><span>Mesa de seguiment operatiu</span><span class="num">26 / 29</span><div class="bar"><i style="width:90%"></i></div></div>
+        <p class="note">Acords complerts en termini sobre acords amb termini vençut.</p>
+      </div>
+      <div class="panel">
+        <div class="sec-h"><h2 class="slash">O5 · Execució pressupostària del pla</h2></div>
+        <div class="bar-row"><span>Crèdit previst al pla</span><span class="num">3,50 M€</span><div class="bar"><i style="width:100%;opacity:.25"></i></div></div>
+        <div class="bar-row"><span>Import adjudicat</span><span class="num">2,73 M€</span><div class="bar"><i style="width:78%"></i></div></div>
+        <div class="bar-row"><span>Modificacions sobre adjudicat</span><span class="num">4,2 %</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OPERATIVA -->
+  <section id="v-operativa" data-view="operativa" style="display:flex;flex-direction:column;gap:18px" hidden>
+    <div class="panel">
+      <div class="sec-h"><h2 class="slash">Expedients de la meva àrea</h2>
+        <label for="area" style="font-size:13px">Àrea promotora&nbsp;
+          <select id="area"></select>
+        </label>
+      </div>
+      <div class="tw"><table>
+        <thead><tr><th>Expedient</th><th>Objecte</th><th>Procediment</th><th class="r">Import</th><th>Prioritat</th><th>Pròxima fita</th><th>Estat</th></tr></thead>
+        <tbody id="exp"></tbody>
+      </table></div>
+      <p class="note">Cada fila correspon a una fitxa de necessitat aprovada. L'estat es calcula amb les dates de fita del registre únic d'expedients.</p>
+    </div>
+  </section>
+</div>
+</main>
+
+<footer><div class="wrap">
+  <span>Prototip elaborat per MBC per a l'oferta COS.01.2026. No és una eina de l'Agència i totes les dades són fictícies.</span>
+  <span>Indicadors alineats amb el catàleg de la proposta (L5)</span>
+</div></footer>
+
+<script>
+(function(){
+  var S={ok:'s-ok',warn:'s-warn',bad:'s-bad'}, L={ok:'En objectiu',warn:'Vigilància',bad:'Fora'};
+  var objs=[
+    {c:'O1',n:'Planificació estructurada i consolidada',k:[
+      ['Compliment de la programació','85 %','Obj. ≥ 85 %','ok'],
+      ['Contractació no planificada','12 %','Obj. ≤ 15 %','ok']]},
+    {c:'O2',n:'Coordinació formalitzada entre àrees',k:[
+      ['Necessitats que entren per la fitxa','78 %','Obj. ≥ 80 %','warn'],
+      ['Termini del circuit de validació','18 d','Obj. ≤ 15 d','warn']]},
+    {c:'O3',n:'Gestió proactiva de venciments i necessitats',k:[
+      ['Contractes sense successor previst','2','Obj. 0','bad'],
+      ["Expedients d'urgència",'11 %','Obj. ≤ 10 %','warn'],
+      ['Termini mitjà de tramitació','96 d','Obj. ≤ 110 d','ok']]},
+    {c:'O4',n:'Rols, responsabilitats i govern clars',k:[
+      ['Àrees amb referent designat','6 / 7','Obj. 100 %','warn'],
+      ['Acords dels fòrums complerts en termini','90 %','Obj. ≥ 85 %','ok']]},
+    {c:'O5',n:'Visió única i traçable amb indicadors',k:[
+      ["Grau d'execució dels contractes",'92 %','Obj. ≥ 90 %','ok'],
+      ['Execució pressupostària','78 %','Obj. ≥ 85 %','warn'],
+      ['Modificacions','4,2 %','Obj. ≤ 10 %','ok'],
+      ['Qualitat de les dades','93 %','Obj. ≥ 95 %','warn']]}
+  ];
+  var rank={ok:0,warn:1,bad:2};
+  var h='';
+  objs.forEach(function(o){
+    var w='ok'; o.k.forEach(function(k){ if(rank[k[3]]>rank[w]) w=k[3]; });
+    h+='<article class="obj '+S[w]+'"><div class="obj-h"><div class="code">'+o.c+'<em>'+L[w]+'</em></div><div class="name">'+o.n+'</div></div>';
+    o.k.forEach(function(k){ h+='<div class="kpi '+S[k[3]]+'"><span class="n">'+k[0]+'</span><span class="v"><i class="dot"></i>'+k[1]+'</span><span class="t">'+k[2]+'</span></div>'; });
+    h+='</article>';
+  });
+  document.getElementById('kpa').innerHTML=h;
+
+  var kri=[['Concentració en els 3 principals proveïdors','Llindar d\'alerta 35 %','34 %','warn'],
+           ['Objectes amb contractes menors recurrents','En els darrers 12 mesos','5','warn'],
+           ['Expedients amb fons europeus en risc','No adjudicats a prop del termini','1','bad']];
+  document.getElementById('kri').innerHTML=kri.map(function(k){return '<div class="'+S[k[3]]+'"><span class="l">'+k[0]+'<small>'+k[1]+'</small></span><span class="v">'+k[2]+'</span></div>';}).join('');
+
+  // Trend chart: scale 0–100% on y from 190 (0) to 20 (100)
+  var d=[['T1',72],['T2',78],['T3',83],['T4',85]], y=function(v){return 190-v*1.7;}, s='';
+  [0,25,50,75,100].forEach(function(t){ s+='<line x1="44" x2="550" y1="'+y(t)+'" y2="'+y(t)+'" stroke="var(--line)"/><text x="36" y="'+(y(t)+4)+'" text-anchor="end">'+t+'%</text>'; });
+  d.forEach(function(p,i){ var x=70+i*122, last=i===d.length-1;
+    s+='<rect x="'+x+'" y="'+y(p[1])+'" width="76" height="'+(190-y(p[1]))+'" fill="'+(last?'var(--strong)':'var(--muted)')+'" opacity="'+(last?1:.55)+'"/>';
+    s+='<text x="'+(x+38)+'" y="'+(y(p[1])+22)+'" text-anchor="middle" style="fill:'+(last?'var(--paper)':'var(--strong)')+';font-weight:700">'+p[1]+'%</text>';
+    s+='<text x="'+(x+38)+'" y="208" text-anchor="middle">'+p[0]+' 2027</text>'; });
+  s+='<line x1="44" x2="550" y1="'+y(85)+'" y2="'+y(85)+'" stroke="var(--red)" stroke-width="2" stroke-dasharray="6 4"/>';
+  s+='<text x="550" y="'+(y(85)-8)+'" text-anchor="end" style="fill:var(--red);font-weight:700">Objectiu 85%</text>';
+  document.getElementById('trend').innerHTML=s;
+
+  var pr=[['A','14 expedients','1,9 M€',100],['B','21 expedients','1,2 M€',63],['C','13 expedients','0,4 M€',21]];
+  document.getElementById('prio').innerHTML=pr.map(function(p){return '<div class="bar-row"><span><b>Prioritat '+p[0]+'</b> · '+p[1]+'</span><span class="num">'+p[2]+'</span><div class="bar"><i style="width:'+p[3]+'%"></i></div></div>';}).join('');
+
+  var v=[['Servei de monitoratge i resposta a incidents','02/2028','Sense expedient','bad'],
+         ['Llicències d\'eines d\'anàlisi de vulnerabilitats','03/2028','Sense expedient','bad'],
+         ['Servei de comunicació i campanyes','05/2028','En preparació','warn'],
+         ['Manteniment de la plataforma de formació','06/2028','En preparació','warn'],
+         ['Suport a l\'organització d\'esdeveniments','08/2028','Programat al pla','ok'],
+         ['Servei de neteja de la seu','10/2028','Programat al pla','ok'],
+         ['Subministrament d\'equips de treball','11/2028','Programat al pla','ok']];
+  document.getElementById('venc').innerHTML=v.map(function(r){return '<tr><td>'+r[0]+'</td><td class="num">'+r[1]+'</td><td><span class="pill '+S[r[3]]+'">'+r[2]+'</span></td></tr>';}).join('');
+
+  var t=[['Obert',96,110],['Simplificat',64,70],['Simplificat abreujat',31,30],['Contractes basats en acord marc',22,25]];
+  document.getElementById('term').innerHTML=t.map(function(r){ var max=130, bad=r[1]>r[2];
+    return '<div class="bar-row"><span>'+r[0]+'</span><span class="num">'+r[1]+' d</span><div class="bar'+(bad?' r':'')+'" style="position:relative"><i style="width:'+(r[1]/max*100)+'%"></i><span style="position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--ink);left:'+(r[2]/max*100)+'%"></span></div></div>';}).join('');
+
+  var e=[['EXP-27-004','Capacitació i Promoció de l\'Ecosistema','Programa de formació en ciberseguretat per a ens locals','Obert',240000,'A','Publicació · 15/01/2028','ok'],
+         ['EXP-27-011','Capacitació i Promoció de l\'Ecosistema','Material didàctic per a centres educatius','Simplificat',58000,'B','Informe de necessitat · 20/01/2028','warn'],
+         ['EXP-27-019','Capacitació i Promoció de l\'Ecosistema','Organització de la jornada anual de l\'ecosistema','Simplificat abreujat',35000,'C','Adjudicació · 12/01/2028','ok'],
+         ['EXP-27-007','Comunicació i Ciutadania','Campanya de sensibilització ciutadana','Obert',310000,'A','Plecs · 08/01/2028','bad'],
+         ['EXP-27-015','Comunicació i Ciutadania','Producció audiovisual de càpsules divulgatives','Simplificat',72000,'B','Publicació · 25/01/2028','ok'],
+         ['EXP-27-002','Gerència','Servei de neteja de la seu','Obert',180000,'B','Fitxa de necessitat · 31/01/2028','ok'],
+         ['EXP-27-009','Gerència','Subministrament d\'equips de treball','Basat en acord marc',95000,'B','Comanda · 18/01/2028','warn'],
+         ['EXP-27-021','Unitat d\'estratègia de certificacions','Assistència tècnica per a esquemes de certificació','Obert',150000,'A','Informe de necessitat · 10/01/2028','bad'],
+         ['EXP-27-024','Unitat d\'estratègia de certificacions','Auditoria externa de processos','Simplificat',45000,'C','Publicació · 05/02/2028','ok']];
+  var sel=document.getElementById('area'), areas=['Totes les àrees'];
+  e.forEach(function(r){ if(areas.indexOf(r[1])<0) areas.push(r[1]); });
+  sel.innerHTML=areas.map(function(a){return '<option>'+a+'</option>';}).join('');
+  var eur=function(n){return n.toLocaleString('ca-ES')+' €';};
+  function draw(){ var a=sel.value;
+    document.getElementById('exp').innerHTML=e.filter(function(r){return a==='Totes les àrees'||r[1]===a;}).map(function(r){
+      var st={ok:'En termini',warn:'Fita a prop',bad:'Endarrerit'}[r[7]];
+      return '<tr><td class="num">'+r[0]+'</td><td>'+r[2]+'<div class="note">'+r[1]+'</div></td><td>'+r[3]+'</td><td class="r">'+eur(r[4])+'</td><td><span class="prio">'+r[5]+'</span></td><td>'+r[6]+'</td><td><span class="pill '+S[r[7]]+'">'+st+'</span></td></tr>';}).join('');
+  }
+  sel.addEventListener('change',draw); draw();
+
+  var per={estrategica:'T4 2027',gestio:'Desembre 2027',operativa:'31/12/2027'};
+  function route(){ var v=(location.hash||'#estrategica').slice(1); if(!per[v]) v='estrategica';
+    document.querySelectorAll('[data-view]').forEach(function(s){ s.hidden = s.getAttribute('data-view')!==v; });
+    document.querySelectorAll('nav a').forEach(function(a){ if(a.getAttribute('data-v')===v) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current'); });
+    document.getElementById('per').textContent=per[v];
+  }
+  window.addEventListener('hashchange',route); route();
+})();
+</script>
+</body></html>
